@@ -1,0 +1,169 @@
+"""
+EDX: MITx: 6.00.1x Introduction to Computer Science and Programming Using Python
+
+Week 1: Python Basics > Problem Set 1 > Problem 3
+
+Write a program that prints the longest substring of s in which the letters occur in alphabetical order. 
+For example, if s = 'azcbobobegghakl', then your program should print
+
+Longest substring in alphabetical order is: beggh
+In the case of ties, print the first substring. For example, if s = 'abcbcd', then your program should print
+
+Longest substring in alphabetical order is: abc
+Note: This problem may be challenging. We encourage you to work smart. 
+If you've spent more than a few hours on this problem, ee suggest that you move on to a different part of the course. 
+If you have time, come back to this problem after you've had a break and cleared your head.
+================
+Test cases
+
+s = 'rgqjqadhfsbnkiqklwldq'
+Output:
+adh
+
+s = 'rvtxxfbtdpuxcblb'
+Output:
+dpux
+
+s = 'bvszxiyqobkz'
+Output:
+bkz
+
+s = 'dxpwpiwx'
+Output:
+iwx
+
+s = 'mwllsucrvjuwqdydzrkur'
+Output:
+llsu
+
+s = 'pagrbktwovjhbh'
+Output:
+bktw
+
+s = 'lysdqvnibufkvhcmehvjxfam'
+Output:
+dqv
+
+s = 'abcdefghijklmnopqrstuvwxyz'
+Output:
+abcdefghijklmnopqrstuvwxyz
+
+s = 'tmvjmctmlqdialyhtuvfbbq'
+Output:
+htuv
+
+s = 'ovyigodxhlvqtdpxof'
+Output:
+ovy
+
+s = 'nkrdlpgofymrjrnritmjrf'
+Output:
+dlp
+
+s = 'zyxwvutsrqponmlkjihgfedcba'
+Output:
+z
+
+s = 'xellvdkoyutawwdm'
+Output:
+ellv
+
+s = 'vqjvwqiuysrrejjrv'
+Output:
+ejjrv
+
+s = 'ndrtwlpxsfpijjizjvuf'
+Output:
+drtw
+
+s = 'dukpkhxocaixgkjugtpjct'
+Output:
+aix
+
+s = 'tsyzhznr'
+Output:
+syz
+
+s = 'pqwbygxkqqggdx'
+Output:
+pqw
+
+s = 'izgarlfmswhgqdjbaezaxpsk'
+Output:
+fmsw
+
+s = 'kknqskwmszcniurtrclid'
+Output:
+kknqs
+
+==================
+
+"""
+
+alpha = "abcdefghijklmnopqrstuvwxyz"
+
+#le is the maximum length of the string. it will be used as the maximum 
+#times the "y" below will go through the "master loop", cycling through
+#each letter
+le = len(s)
+
+#la will be for the max length of the alphabet. This will be for the 
+#"inner" loop
+la= len(alpha)
+
+#y is the terminting condition for the master loop
+y = 0
+
+#x and t and the variables used to compare the strings and the 
+#alphabet. They will represent the position of the each one
+x=0
+t=0
+
+#final is the final string to be printed
+final = 0
+
+#temp is where the different length strings will be stored before..
+temp = ""
+
+#being put into a list
+lastlist = []
+
+#the master loops starts by checking if y is less the the lenth of
+#the string, if it is, then the loop continues
+
+while (y < le):
+#t is set to the current version of y. this will give us the position
+#of the string (i.e the letter) we are comparing 
+    t=y
+
+#x is reset every time the master loops runs. This resets the 
+#alphabet position
+    x=0
+    
+#temp is rest to make room for the new set of "longest string"
+    temp=""
+    
+#Minor loop starts by checking is x is less the the lenght if the 
+#alphabet, if it is then the loops continues
+    while (x < la) and (t<le):
+        if alpha[x] == s[t]:
+            final = (alpha[x])
+            temp = temp + final
+            t=t+1
+        else:
+            x=x+1
+    y += 1
+    lastlist.append(temp) 
+
+
+a=0
+b=0
+finpos=0
+
+while a < len(lastlist):
+    if b < len(lastlist[a]):
+        finpos = a
+        b=len(lastlist[a])
+    a=a+1
+
+print(lastlist[finpos])
