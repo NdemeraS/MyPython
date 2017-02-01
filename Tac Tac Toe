@@ -1,0 +1,123 @@
+# Still doesn't display the winner of the match! Fix!
+
+
+def maingame():
+    
+    print("")
+    print("")    
+    print("Welcome to TicTaCToe")
+    
+    
+    
+    #dictionary representing the position on TicTacToe grid    
+    cor = {1:"1", 2:"2", 3:"3", 4:"4", 5: "5", 6:"6", 7:"7", 8:"8", 9:"9"}
+    
+    cor2 = {1:"1", 2:"2", 3:"3", 4:"4", 5: "5", 6:"6", 7:"7", 8:"8", 9:"9"}
+    
+    #print grid  
+    grid(cor)
+    
+    ply = 1 #player one always starts first
+    turn = 6 #number of turns remaining
+    plyone = [] # ply one's win condition list
+    plytwo = [] # ply two's win condition list
+    
+    
+    while turn > 0:
+        
+        print("")
+        print("")
+        print("Player " + str(ply) + "'s turn")
+       #ply = input("Select player 1 or player 2 or Exit (X): ")
+
+
+        #Make sure valid player selection        
+        #f = False 
+        #if  ply == "1" or ply == "2" or ply == "X":
+        #    f = True
+        #while f == False:
+        #    ply = input("Invalid selection. Select player 1 or player 2 or Exit (X): ")
+        #    if  ply == "1" or ply == "2" or ply == "X":
+        #        f = True
+        
+        
+        if ply == 1:
+            
+            #Make sure valid player selection 
+            f = False
+            while f == False:
+                ply1 = int(input("Enter number based on the grid : "))
+                if ply1 in list(cor2.keys()):
+                    f = True
+                else:
+                    print("Invalid selection, Try again")
+            
+            #map X to grid and print it
+            cor[ply1] = "X"
+            grid(cor)
+            
+            #check if player has won
+            plyone.append(ply1)
+            checkwin(plyone, ply)        
+        
+            del cor2[ply1]
+            
+            turn -= 1 #one turn down
+            ply = 2 # switch to player 2
+            
+        elif ply == 2:
+            
+            #Make sure valid player selection 
+            f = False
+            while f == False:
+                ply1 = int(input("Enter number based on the grid : "))
+                if ply1 in list(cor2.keys()):
+                    f = True
+                else:
+                    print("Invalid selection, Try again")
+            
+            #map 0  grid and print it
+            cor[ply1] = "0"
+            grid(cor)
+            
+            #check if player has won
+            plytwo.append(ply1)
+            checkwin(plyone, ply)        
+        
+            del cor2[ply1]            
+            
+            turn -= 1  #one turn down
+            ply = 1 # switch to player 1
+        else:
+            print("The End!")
+            turn = 6
+            break
+            pass
+
+
+
+
+def checkwin(x, b):
+    x.sort()
+    if len(x) < 4:
+        pass
+    elif (x == [1, 2, 3]) or (x == [4, 5, 6]) or (x == [7, 8, 9]) or (x == [1, 5, 9]) or (x == [7, 5, 3] or (x == [1, 4, 7]) or (x == [2, 5, 8]) or (x == [3, 6, 9])): 
+        return print("Player " + str(b) + " wins!!!")
+    else:
+        return print("Draw")
+
+
+def grid(cor):
+    
+    print("")
+    print("  " + str(cor[1]) + " | " + str(cor[2])  + " | " + str(cor[3]) )
+    print(" " + "---" + " " + "---" + " " + "---")
+    print("  " + str(cor[4]) + " | " + str(cor[5])  + " | " + str(cor[6]) )
+    print(" " + "---" + " " + "---" + " " + "---")
+    print("  " + str(cor[7]) + " | " + str(cor[8])  + " | " + str(cor[9]) )
+
+
+
+maingame()
+
+
