@@ -1,0 +1,179 @@
+# This is an exercise from Introduction to Computer Science  using Python 
+#
+# Metric conversions: Develop and test a Python program that converts various metrics. The program should convert both ways (pg125)
+#
+
+
+def main ():
+    
+    #Display Selection Menu
+    screen()
+    
+    
+    # Choice conditonal and error check
+    f = False
+    while f == False:
+        choice = input("Enter a choice : ")
+        if choice == "1":
+            poundgram()
+        elif choice == "2":
+            grampound()
+        elif choice == "3":
+            inchcm()
+        elif choice == "4":
+            cminches()
+        elif choice == "5":
+            mkm()
+        elif choice == "6":
+            kmm()
+        elif choice == "0":
+            print("Thank You!")
+            f = True
+        else:
+            print(" \n \n \nInvalid choice. Try again")
+            screen()
+
+
+def screen():
+    print("\n \n")
+    print("Welcome to the Metric Calculator")
+    print("\nPlease make a selection")
+    print("(1) ---> Pound to Grams")
+    print("(2) ---> Grams to Pound")
+    print("(3) ---> Inches to Centimetres")
+    print("(4) ---> Centimetres to Inches")
+    print("(5) ---> Mile to Kilometre")
+    print("(6) ---> Kilometre to Mile")
+    print("(0) ---> Exit")
+
+def poundgram():
+    """
+    This is the Pounds to Grams calculator
+    1 pound = 453.592 grams
+    """
+    
+    print("\nThis is the Pound to Gram calculator")    
+
+    #validate user input
+    x = check()
+    
+    #calculate and display all in one
+    print(str(x) + " pounds converts to " + str(x*453.592) + " grams")
+    
+    #return to main menu    
+    screen ()
+    
+
+
+def grampound():
+    """
+    This is the Grams to Pounds calculator
+    1 gram = 0.0022 pounds
+    """
+    
+    print("\nThis is the Grams to Pounds calculator")    
+
+    #validate user input
+    x = check()
+    
+    #calculate and display all in one
+    print(str(x) + " grams converts to " + str(x*.0022) + " pounds")
+    
+    #return to main menu    
+    screen ()
+
+
+def inchcm():
+    """
+    This is the Inches to Centimetres calculator
+    1 inch = 2.54 cm
+    """
+    
+    print("\nThis is the Inches to Centimetres calculator")    
+
+    #validate user input
+    x = check()
+    
+    #calculate and display all in one
+    print(str(x) + " Inches converts to " + str(x*2.54) + " Centimetres")
+    
+    #return to main menu    
+    screen ()
+
+
+def cminches():
+    """
+    This is the Centimetres to Inches calculator
+    1 cm = 0.393 inches
+    """
+    
+    print("\nThis is the Centimetres to Inches calculator")    
+
+    #validate user input
+    x = check()
+    
+    #calculate and display all in one
+    print(str(x) + " Centimetres converts to " + str(x*0.393) + " Inches")
+    
+    #return to main menu    
+    screen ()
+
+
+def mkm():
+    """
+    This is the miles to kilometres calculator
+    1 mile = 1.609 km
+    """
+    
+    print("\nThis is the miles to kilometres calculator")    
+
+    #validate user input
+    x = check()
+    
+    #calculate and display all in one
+    print(str(x) + " miles converts to " + str(x*1.609) + " kilometres")
+    
+    #return to main menu    
+    screen ()
+
+
+def kmm():
+    """
+    This is the kilometres to miles calculator
+    1 km = 0.621 miles
+    """
+    
+    print("\nThis is the kilometres to miles calculator")    
+
+    #validate user input
+    x = check()
+    
+    #calculate and display all in one
+    print(str(x) + " kilometres converts to " + str(x*0.602) + " miles")
+    
+    #return to main menu    
+    screen ()
+
+
+
+
+
+def check():
+    """
+    This checks whether user has entered a valid number and not a
+    string and then return the value to one of the calculators
+    """    
+    
+    val = input("What value would you like to convert : ")
+    
+    f = False
+    while f == False:
+        try:
+            val = float(val)
+            f = True
+        except:
+            print("Invalid input. Try again")
+            val = input("What value would you like to convert : ")
+    return val
+    
+main()
