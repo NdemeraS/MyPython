@@ -1,0 +1,31 @@
+
+def closest_power(base, num):
+    '''
+    base: base of the exponential, integer > 1
+    num: number you want to be closest to, integer > 0
+    Find the integer exponent such that base**exponent is closest to num.
+    Note that the base**exponent may be either greater or smaller than num.
+    In case of a tie, return the smaller value.
+    Returns the exponent.
+    '''
+    # Your code here
+    
+    
+    entire = {}
+    numtemp = num
+    
+    # This loop creates a dictonary with the difference of base**exponent and
+    # num (to see which is the closest to num) as a key, and the actual
+    # exponent as the element
+        
+    while numtemp >= 0:
+        entire[abs(base**numtemp - num)] = numtemp
+        numtemp -= 1
+    
+    #print(entire)
+    
+    # this looks for the lowest key in the dictionary and returns its value
+    print(int(entire[min(list(entire.keys()))]))  
+
+    return (entire[min(list(entire.keys()))])      
+    
