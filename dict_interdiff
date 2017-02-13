@@ -1,0 +1,44 @@
+def f(a, b):
+    if a > b:
+        return True
+    else:
+        return False
+
+def dict_interdiff(d1, d2):
+    '''
+    d1, d2: dicts whose keys and values are integers
+    Returns a tuple of dictionaries according to the instructions above
+    '''
+    
+    # intersect dictionary
+    intersect = {}
+    difference = {}
+    k1 = list(d1.keys())
+    k2 = list(d2.keys())
+    k0 = []
+    
+    
+    #creates a list of keys in both dictionaries 
+    #k0 = list(set(list(d1.keys()) + list(d2.keys())))
+    
+    for item in k1:    
+        if item in k2:
+            k0.append(item)
+    
+        # populate intersect dictionary
+    for item in k0:
+        intersect[item] = f(d1[item], d2[item]) 
+
+    for item in k1:
+        if item in k2:
+            pass
+        else:
+            difference[item] = d1[item]
+    for item in k2:
+        if item in k1:
+            pass
+        else:
+            difference[item] = d2[item]
+    
+    print(intersect, difference)
+    return intersect, difference
