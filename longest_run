@@ -1,0 +1,118 @@
+
+
+def longest_run(L):
+    """
+    Assumes L is a list of integers containing at least 2 elements.
+    Finds the longest run of numbers in L, where the longest run can
+    either be monotonically increasing or monotonically decreasing. 
+    In case of a tie for the longest run, choose the longest run 
+    that occurs first.
+    Does not modify the list.
+    Returns the sum of the longest run. 
+    """
+    
+    #make copy of list so that it isnt modified
+    l1 = L[:]
+    
+    
+    #create a list of list with a elememts made of items in ascending order
+    increase = []
+    temp = []
+    
+    i = 0
+    while i < len(l1):
+        if len(increase) == 0:
+            increase.append(l1[i])
+        elif l1[i] >= l1[i-1]:
+            increase.append(l1[i])
+        else:
+            temp.append(increase)
+            increase = []
+            increase.append(l1[i])
+        i += 1
+    temp.append(increase)
+
+
+    #create a list of list with a elememts made of items in decreasing order
+    decrease = []
+    temp2 = []
+    
+    i = 0
+    while i < len(l1):
+        if len(decrease) == 0:
+            decrease.append(l1[i])
+        elif l1[i] <= l1[i-1]:
+            decrease.append(l1[i])
+        else:
+            temp2.append(decrease)
+            decrease = []
+            decrease.append(l1[i])
+        i += 1  
+    temp2.append(decrease)
+        
+    #print(temp)
+    #print(temp2)
+    
+    
+    #checking the list with the most elements in the ascending list 
+    #and make a note of its position
+    i = 0
+    pos1 = 0
+    len1 = 0
+    templen = 0
+    while i < len(temp):
+        templen = len(temp[i])
+        if templen > len1:
+            len1 = templen
+            pos1 = i
+        i += 1
+     
+    #print(len1)
+    #print(pos1)
+    
+    #checking the list with the most elements in the descending list 
+    #and make a note of its position
+    i = 0
+    pos2 = 0
+    len2 = 0
+    templen = 0
+    while i < len(temp2):
+        templen = len(temp2[i])
+        if templen > len2:
+            len2 = templen
+            pos2 = i
+        i += 1
+    
+    #print(len2)
+    #print(pos2)
+    
+    
+    #compare the 2 lists to check which has the most items and or 
+    #which came first
+
+    final = []
+
+    if len1 == len2:
+        if pos1 < pos2:
+            final = temp[pos1]
+        else:
+            final = temp2[pos2]
+    elif len1 > len2:
+        final = temp[pos1]
+    else:
+        final = temp2[pos2]
+    
+    
+    #print(final)
+        
+    sum = 0
+    for item in final:
+        sum = sum + item
+    
+    #print(sum)
+    return sum
+
+L = [10, 4, 3, 8, 3, 4, 5, 7, 7, 2]
+#L = [5, 4, 10]
+
+longest_run(L)    
